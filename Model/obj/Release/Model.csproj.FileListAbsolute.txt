@@ -1,0 +1,8 @@
+D:\Project\Silverlight\AccountingSystem\Model\bin\Release\Model.dll
+D:\Project\Silverlight\AccountingSystem\Model\bin\Release\Model.pdb
+D:\Project\Silverlight\AccountingSystem\Model\obj\Release\Model.dll
+D:\Project\Silverlight\AccountingSystem\Model\obj\Release\Model.pdb
+D:\Project\MyPortal\MyPortal\Model\bin\Release\Model.dll
+D:\Project\MyPortal\MyPortal\Model\bin\Release\Model.pdb
+D:\Project\MyPortal\MyPortal\Model\obj\Release\Model.dll
+D:\Project\MyPortal\MyPortal\Model\obj\Release\Model.pdb

@@ -1,0 +1,82 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Root.master.cs" Inherits="MyPortal.Root" %>
+
+
+<%@ Register TagPrefix="comX" Namespace="WebSite.Classes.ComponentX" Assembly="WebSite" %>
+
+<%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>فروشگاه الکترونیکی</title>
+    
+    <link href="../Content/main.css" rel="stylesheet" />
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="../Content/kendo/2013.1.319/kendo.default.min.css" rel="stylesheet" />
+    <link href="../Content/kendo/2013.1.319/kendo.common.min.css" rel="stylesheet" />
+
+    <script src="../Scripts/jquery-1.9.1.js"></script>
+    <script src="../Scripts/knockout-2.2.1.js"></script>
+    <script src="../Scripts/q.js"></script>
+    <script src="../Scripts/breeze.debug.js"></script>
+    <script src="../Scripts/bootstrap.js"></script>
+    <script src="../Scripts/amplify.js"></script>    
+    <script src="../Scripts/kendo/2013.1.319/jquery.min.js"></script>
+    
+    <script src="../Scripts/kendo/2013.1.319/kendo.web.min.js"></script>
+    <script src="../Scripts/knockout-kendo.js"></script>
+    <script src="../Scripts/helper/helper.ko.js"></script>
+    <script src="../Scripts/helper/helper.ajax.js"></script>
+    
+    
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    
+</head>
+<body dir="rtl">
+   
+    <form id="form1" runat="server">
+        <comx:ScriptManagerX ID="RadScriptManager1" Runat="server"/>
+    <div class="container">
+                    <comX:MenuX ID="MenuX1" runat="server" Skin="Outlook" Width="100%" Height="100px">
+                        <Items>
+                            <telerik:RadMenuItem runat="server" Text="صفحه اصلی" NavigateUrl="~/Default.aspx">
+                            </telerik:RadMenuItem>
+                            <telerik:RadMenuItem runat="server" Text="درباره ما" NavigateUrl="~/AboutUs.aspx">
+                            </telerik:RadMenuItem>
+                            <telerik:RadMenuItem runat="server" Text="محصولات ما" NavigateUrl="~/Customer/PageProductShow.aspx">
+                            </telerik:RadMenuItem>
+                            <telerik:RadMenuItem runat="server" Text="تماس با ما" NavigateUrl="~/ContactUs.aspx">
+                            </telerik:RadMenuItem>
+                            <telerik:RadMenuItem runat="server" Text="بخش مدیریت سایت" NavigateUrl="~/Admin">
+                            </telerik:RadMenuItem>
+                        </Items>
+                    </comX:MenuX>
+        
+         <asp:Label ID="lblUser" runat="server" Text=""></asp:Label>
+                                <asp:LoginView ID="LoginView" runat="server">
+                                    <LoggedInTemplate>
+                                        <br/>
+                                        <b><asp:LinkButton ID="lbSignOut" runat="server" onclick="lbSignOut_Click">خروج</asp:LinkButton>
+                                        |
+                                        <asp:HyperLink ID="hlProfile" runat="server" NavigateUrl="~/Security/Profile.aspx">پروفایل</asp:HyperLink></b>
+                                    </LoggedInTemplate>
+                                    <AnonymousTemplate>
+                                    <b>
+                                         <asp:HyperLink ID="hllogin" runat="server" NavigateUrl="~/Security/Login.aspx">ورود</asp:HyperLink>
+                                            |
+                                         <asp:HyperLink ID="hlRegister" runat="server" NavigateUrl="~/Security/Register.aspx">ثبت نام</asp:HyperLink></b>
+                                    </AnonymousTemplate>
+                                </asp:LoginView>
+        <%--Body--%>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+ 
+    </div>                   
+
+    </form>
+</body>
+</html>

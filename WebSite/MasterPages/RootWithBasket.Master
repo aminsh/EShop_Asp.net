@@ -1,0 +1,110 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="RootWithBasket.master.cs" Inherits="WebSite.MasterPages.RootWithBasket" %>
+<%@ Register TagPrefix="comX" Namespace="WebSite.Classes.ComponentX" Assembly="WebSite" %>
+<%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>فروشگاه الکترونیکی</title>
+    
+    <link href="../Content/main.css" rel="stylesheet" />
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="../Content/kendo/2013.1.319/kendo.default.min.css" rel="stylesheet" />
+    <link href="../Content/kendo/2013.1.319/kendo.common.min.css" rel="stylesheet" />
+    <link href="../Content/product.css" rel="stylesheet" />
+
+    <script src="../Scripts/jquery-1.9.1.js"></script>
+    <script src="../Scripts/knockout-2.2.1.js"></script>
+    <script src="../Scripts/q.js"></script>
+    <script src="../Scripts/breeze.debug.js"></script>
+    <script src="../Scripts/bootstrap.js"></script>
+    <script src="../Scripts/amplify.js"></script>    
+    <script src="../Scripts/kendo/2013.1.319/jquery.min.js"></script>
+    
+    <script src="../Scripts/kendo/2013.1.319/kendo.web.min.js"></script>
+    <script src="../Scripts/knockout-kendo.js"></script>
+    <script src="../Scripts/helper/helper.ko.js"></script>
+    <script src="../Scripts/helper/helper.ajax.js"></script>
+    <script src="../Scripts/app/basket.js"></script>
+    
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <comx:ScriptManagerX ID="RadScriptManager1" Runat="server"/>
+    <div class="container">
+                    <comX:MenuX ID="MenuX1" runat="server" Skin="Outlook" Width="100%" Height="100px">
+                        <Items>
+                            <telerik:RadMenuItem runat="server" Text="صفحه اصلی" NavigateUrl="~/Customer/Default.aspx">
+                            </telerik:RadMenuItem>
+                            <telerik:RadMenuItem runat="server" Text="درباره ما" NavigateUrl="~/AboutUs.aspx">
+                            </telerik:RadMenuItem>
+                            <telerik:RadMenuItem runat="server" Text="محصولات ما" NavigateUrl="~/Customer/PageProductShow.aspx">
+                            </telerik:RadMenuItem>
+                            <telerik:RadMenuItem runat="server" Text="تماس با ما" NavigateUrl="~/ContactUs.aspx">
+                            </telerik:RadMenuItem>
+                        </Items>
+                    </comX:MenuX>
+        
+         <asp:Label ID="lblUser" runat="server" Text=""></asp:Label>
+                                <asp:LoginView ID="LoginView" runat="server">
+                                    <LoggedInTemplate>
+                                        <br/>
+                                        <b><asp:LinkButton ID="lbSignOut" runat="server" onclick="lbSignOut_Click">خروج</asp:LinkButton>
+                                        |
+                                        <asp:HyperLink ID="hlProfile" runat="server" NavigateUrl="~/Security/Profile.aspx">پروفایل</asp:HyperLink></b>
+                                        <br/>
+                                        <div class="container-fluid" style="background-color:gainsboro;">
+            <div class="row-fluid" data-bind="if: basket.count()">
+                <div class="span2">
+                    <h4>سبد خرید شما</h4>
+                    <p><h5>قیمت کل </h5></p>
+                    <hr/>
+                     <h5 data-bind="text: $root.total"></h5>ریال
+                    <hr/>
+               
+                    <p>
+                         <a class="btn btn-danger" href="#" data-bind="click: $root.emptyBasket" data-toggle="tooltip" data-placement="top" title="خالی کردن سبد خرید" data-original-title="خالی کردن سبد خرید"><i class="icon-trash icon-white"></i></a>
+                         <a href="../Customer/PagePayment.aspx" class="btn btn-success"  data-toggle="tooltip" data-placement="top" title="ثبت نهایی" data-original-title=""><i class="icon-ok icon-white"></i></a>
+                        <a href="../Customer/PageProductShow.aspx" class="btn btn-primary"  data-toggle="tooltip" data-placement="top" title="اضافه کردن محصول" data-original-title=""><i class="icon-plus icon-white"></i></a>
+                    </p>
+                </div>
+                <div class="span10">
+                    <ul data-bind="foreach: $root.basket" >
+                    <li class="basket">
+                        <a data-bind="click: $root.removeFromBasket" class="view-selected-items">
+                            <h3 data-bind="text: Product().Title"></h3>            
+                            <img data-bind="attr: { src: ImageUrlThumb }" />
+                            <span>تعداد : </span>
+                            <span data-bind="text: Qty"></span>
+                            <p>
+                                <span>قیمت : </span>
+                                <span data-bind="text: TotalPrice"></span>
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </div>
+                                    </LoggedInTemplate>
+                                    <AnonymousTemplate>
+                                    <b>
+                                         <asp:HyperLink ID="hllogin" runat="server" NavigateUrl="~/Security/Login.aspx">ورود</asp:HyperLink>
+                                            |
+                                         <asp:HyperLink ID="hlRegister" runat="server" NavigateUrl="~/Security/Register.aspx">ثبت نام</asp:HyperLink></b>
+                                    </AnonymousTemplate>
+                                </asp:LoginView>
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+        
+    </div>
+        </div>
+    </form>
+</body>
+</html>
